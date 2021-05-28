@@ -10,8 +10,8 @@ import (
 
 func main() {
 	rowNum := 0
-	fileA := "ms.csv"
-	fileB := "bs.csv"
+	fileA := "a.csv"
+	fileB := "b.csv"
 
 	f, err := os.Open(fileA)
 	if err != nil {
@@ -32,9 +32,7 @@ func main() {
 			log.Fatal(err)
 		}
 		lc1++
-
-		m1[r[rowNum]] = m1[r[rowNum]] + 1
-
+		m1[r[rowNum]]++
 	}
 
 	f2, err := os.Open(fileB)
@@ -56,8 +54,7 @@ func main() {
 		}
 
 		lc2++
-
-		m2[r[rowNum]] = m2[r[rowNum]] + 1
+		m2[r[rowNum]]++
 	}
 	var c1 int
 	for v := range m1 {
