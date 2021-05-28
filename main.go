@@ -20,7 +20,6 @@ func main() {
 	defer f.Close()
 
 	rb := csv.NewReader(f)
-
 	m1 := make(map[string]int)
 	var lc1 int
 	for {
@@ -52,21 +51,19 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-
 		lc2++
 		m2[r[rowNum]]++
 	}
+
 	var c1 int
 	for v := range m1 {
 		n, ok := m2[v]
 		if !ok {
 			c1++
 			fmt.Printf("B missing, %s\n", v)
-		}
-		if n > 1 {
+		} else if n > 1 {
 			fmt.Printf("B contains %d entries of %s\n", n, v)
 		}
-
 	}
 
 	var c2 int
@@ -75,11 +72,9 @@ func main() {
 		if !ok {
 			c2++
 			fmt.Printf("A missing, %s\n", v)
-		}
-		if n > 1 {
+		} else if n > 1 {
 			fmt.Printf("A contains %d entries of %s\n", n, v)
 		}
-
 	}
 
 	fmt.Printf("\nLines A(%d), B(%d), diff(%d)\n", lc1, lc2, lc1-lc2)
